@@ -1,0 +1,20 @@
+{
+  "name": "Wayfinding",
+  "description": "A backend for a Wayfinding Experiment",
+  "main": "",
+  "authors": [
+    "Willchalfan <f.waicung@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Wayfinding"
+  ],
+  "homepage": "https://github.com/Waicung/Wayfinding-Laravel",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
