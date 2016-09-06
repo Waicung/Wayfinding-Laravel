@@ -15,10 +15,14 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/about', function () {
+Route::get('/ab', function () {
     return view('about');
 });
 
 Route::get('/contact', function () {
     return view('contact');
+});
+
+Route::get('/login', function(){
+    return view('pages.login');
 });
