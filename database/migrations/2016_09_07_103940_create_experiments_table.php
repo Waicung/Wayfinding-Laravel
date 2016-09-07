@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdminTable extends Migration
+class CreateExperimentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateAdminTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function(Blueprint $table){
+        Schema::create('experiments', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('admin_id')->unsigned();
-            $table->foreign('admin_id')->references('user_id')->on('users');
-            $table->boolean('activated')->default(0);
-            $table->boolean('superuser')->default(0);
+            $table->foreign('admin_id')
+                  ->references('admin_id')->on('admins')
+                  ->onDelete('cascade');
             $table->timestamps();
+            $table->timestamp('closed_at')->nullable();
         });
-        //
     }
 
     /**
@@ -30,6 +31,6 @@ class CreateAdminTable extends Migration
      */
     public function down()
     {
-        Schema::drop('admins');
+        Schema::drop('experiments');
     }
 }
