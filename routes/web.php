@@ -26,3 +26,5 @@ Route::get('/contact', function () {
 Route::get('/login', function(){
     return view('auth.login');
 });
+
+Route::get('/dashboard', 'PageController@home');

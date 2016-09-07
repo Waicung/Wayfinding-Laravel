@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class Experiment extends Model
 {
     //
-    protected $primary_key = 'admin_id';
 }
