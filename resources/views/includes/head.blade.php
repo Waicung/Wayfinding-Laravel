@@ -14,5 +14,6 @@
                 'crsfToken' => csrf_token(),
             ]); ?>
         </script>
+
     </head>
 <body>
