@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/ab', function () {
+Route::get('/about', function () {
     return view('about');
 });
 
@@ -25,4 +25,9 @@ Route::get('/contact', function () {
 
 Route::get('/login', function(){
     return view('pages.login');
+});
+
+Route::get('/register', function()
+{
+    return view('pages.register');
 });

@@ -1,10 +1,10 @@
-@extends('layouts/default')
+@extends('layouts.default')
 
 @section('content')
 
-<div class="container-fluid bg-2 text-center">
-    <h3 class="margin">What is this?</h3>
-    <p>A Wayfinding Experiment</p>
+<div class="container-fluid bg-1 text-center">
+    <h3 class="margin">What is it?</h3>
+    
 </div>
 
 @endsection
