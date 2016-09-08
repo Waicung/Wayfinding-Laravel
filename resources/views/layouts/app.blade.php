@@ -16,12 +16,14 @@
         </script>
     </head>
     <body>
-    @include('includes/header')
+        @include('includes/header')
 
-    @yield('content')
+        @yield('content')
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        @include('includes/footer')
 
-    @include('includes/footer')
+        <!-- Scripts -->
+        <script src="/js/app.js"></script>
+        <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    </body>
+</html>

@@ -23,8 +23,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/login', function(){
-    return view('auth.login');
-});
+Auth::routes();
 
-Route::get('/dashboard', 'PageController@home');
+Route::get('/home', 'PageController@home');
