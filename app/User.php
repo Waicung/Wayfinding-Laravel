@@ -18,7 +18,7 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
-    protected $primary_key = 'user_id';
+    protected $primaryKey = 'user_id';
 
     /**
      * The attributes that should be hidden for arrays.
