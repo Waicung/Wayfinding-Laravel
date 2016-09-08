@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
 use App\User;
+use App\Admin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,15 +64,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'logined_at' => Carbon::now(),
         ]);
-        $user_id = User->where('email', $data['email'])->first();
-        return Admin::create([
-            'admin_id' => $user_id;
+        $user_id = User::where('email', $data['email'])->first()->user_id;
+        Admin::create([
+            'admin_id' => $user_id,
         ]);
+        return $user;
     }
 }
