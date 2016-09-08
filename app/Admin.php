@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model
 {
     //
+    protected $primary_key = 'admin_id';
 }
