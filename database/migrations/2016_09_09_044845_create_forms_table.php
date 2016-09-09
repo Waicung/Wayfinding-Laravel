@@ -19,8 +19,7 @@ class CreateFormsTable extends Migration
             $table->foreign('admin_id')
                   ->references('admin_id')->on('admins')
                   ->onDelete('cascade');
-            $table->string('title');
-            $table->string('page');
+            $table->string('title')->unique();
             $table->timestamps();
             $table->boolean('activated')->default(0);
         });

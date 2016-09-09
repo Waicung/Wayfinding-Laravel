@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Form;
+use App\Test;
+
 class PageController extends Controller
 {
     //
@@ -27,7 +30,10 @@ class PageController extends Controller
 
     public function createForm()
     {
-        return view('pages.creater');
+        $forms = Form::all();
+        $tests = Test::all();
+
+        return view('pages.creater', ['forms' => $forms, 'tests' => $tests]);
     }
 
     public function monitor()
