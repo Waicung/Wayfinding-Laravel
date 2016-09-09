@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @foreach($errors->all() as $message)
+        {{ $message }}
+    @endforeach
     <div class="container">
 
         <div class="row">

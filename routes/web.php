@@ -25,7 +25,12 @@ Route::get('/contact', function () {
 
 Auth::routes();
 
-Route::get('/home', 'PageController@home');
+Route::get('/register', function()
+{
+    return view('auth.register');
+});
+
+Route::get('/home', 'PageController@home')->name('home');
 
 Route::get('/newexperiment', 'PageController@createForm')
     ->name('newexperiment');
@@ -38,3 +43,5 @@ Route::get('/recruitment/{section}', 'PageController@recruitment')
 
 Route::get('/analyzer', 'PageController@analyzer')
     ->name('analyzer');
+
+Route::post('/createexp', 'ExpController@createExp');

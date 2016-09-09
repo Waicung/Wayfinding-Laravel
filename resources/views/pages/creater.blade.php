@@ -3,20 +3,24 @@
 @section('content')
     @include('includes.panel')
 
+    @foreach($errors->all() as $message)
+        {{ $message }}
+    @endforeach
     <div class="container">
         <h2>Experiment Creater</h2>
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="/createexp" method="post">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label class="control-label col-sm-2" for="subject">Subject:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="subject" placeholder="A wayfinding Experiment">
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="A wayfinding Experiment">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-2" for="description">Descripion</label>
                 <div class="col-sm-10">
-                    <input type="testarea" class="form-control" id="description" placeholder="Describe the project">
+                    <input type="testarea" class="form-control" id="description" name="description" placeholder="Describe the project">
                 </div>
             </div>
 
@@ -55,8 +59,9 @@
                 </div>
             </div>
 
+
             <!--Route Selecter-->
-            <hr>
+<!--            <hr>
             <h3>Route Selecter</h3>
             <div class="form-group">
                 <label class="control-label col-sm-1" for="subject">Centre:</label>
@@ -77,12 +82,7 @@
                 <div class="col-sm-3">
                     <button type="button" class="btn btn-default">Add Route</button>
                 </div>
-
-            </div>
-
-
-
-
+            </div>-->
 
         </form>
     </div>
