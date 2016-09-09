@@ -26,3 +26,15 @@ Route::get('/contact', function () {
 Auth::routes();
 
 Route::get('/home', 'PageController@home');
+
+Route::get('/newexperiment', 'PageController@createForm')
+    ->name('newexperiment');
+
+Route::get('/monitor/{section}', 'PageController@monitor')
+    ->name('monitor');
+
+Route::get('/recruitment/{section}', 'PageController@recruitment')
+    ->name('recruitment');
+
+Route::get('/analyzer', 'PageController@analyzer')
+    ->name('analyzer');
