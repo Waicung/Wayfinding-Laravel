@@ -13,7 +13,7 @@ class CreateTestSelectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_select', function (Blueprint $table) {
+        Schema::create('test_selects', function (Blueprint $table) {
             $table->integer('experiment_id')->unsigned();
             $table->foreign('experiment_id')
                   ->references('experiment_id')->on('experiments');
@@ -32,6 +32,6 @@ class CreateTestSelectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('test_select');
+        Schema::drop('test_selects');
     }
 }
