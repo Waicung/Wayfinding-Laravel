@@ -26,4 +26,16 @@ class Experiment extends Model
     {
         return $this->hasMany('App\Test_select');
     }
+
+    public function central()
+    {
+        return $this->hasOne('App\Point');
+    }
+
+    public function route_selects()
+    {
+        return $this->hasMany('App\Route_select');
+    }
+
+
 }

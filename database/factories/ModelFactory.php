@@ -31,6 +31,17 @@ $factory->define(App\Admin::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Experiment::class, function (Faker\Generator $faker) {
+    static $admin_id;
+
+    return [
+        'admin_id' => $admin_id ?: $admin_id = 1,
+        'subject' => $faker->bothify('Experiment ##??'),
+        'description' => $faker->text($maxNbChars = 200),
+        'central_id' => $faker->randomElement($array = array (1,2,3,4,5)),
+    ];
+});
+
 
 
 $factory->define(App\Form::class, function (Faker\Generator $faker) {
@@ -47,6 +58,14 @@ $factory->define(App\Test::class, function (Faker\Generator $faker) {
     return [
         'admin_id' => $admin_id ?: $admin_id = 1,
         'title' => $faker->numerify('Test ###'),
+    ];
+
+});
+
+$factory->define(App\Point::class, function (Faker\Generator $faker) {
+    return [
+        'longitude' => $faker->longitude($min = -180, $max = 180),
+        'latitude' => $faker->latitude($min = -90, $max = 90),
     ];
 
 });
