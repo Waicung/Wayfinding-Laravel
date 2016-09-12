@@ -11,6 +11,9 @@ use App\Form;
 use App\Test;
 use App\Experiment;
 
+use App\Form;
+use App\Test;
+
 class PageController extends Controller
 {
     //
