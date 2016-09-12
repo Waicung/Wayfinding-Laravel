@@ -19,7 +19,7 @@ class CreateExperimentsTable extends Migration
             $table->foreign('admin_id')
                   ->references('admin_id')->on('admins')
                   ->onDelete('cascade');
-            $table->string('subject');
+            $table->string('subject')->unique();
             $table->text('description')->nullable();
             $table->timestamps();
             $table->timestamp('closed_at')->nullable();

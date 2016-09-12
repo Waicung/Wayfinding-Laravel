@@ -41,11 +41,11 @@
                 <label for="form" class="col-sm-12">Recruitment Form:</label>
                 <div class="col-sm-12">
                     <select class="form-control" id="form" name="form">
-                        @if(isset($forms))
+                
                         @foreach($forms as $form)
                             <option value="{{ $form->title }}">{{ $form->title }}</option>
                         @endforeach
-                        @endif
+
                     </select>
                     @if ($errors->has('form'))
                         <span class="help-block">
@@ -58,11 +58,11 @@
                 <label for="test" class="col-sm-12">Recruitment Test (Optional: hold shift to select more than one):</label>
                 <div class="col-sm-12">
                     <select multiple class="form-control" id="test" name="test">
-                        @if(isset($tests))
+
                         @foreach($tests as $test)
                             <option value="{{ $test->title }}">{{ $test->title }}</option>
                         @endforeach
-                        @endif
+
                     </select>
                     @if ($errors->has('test'))
                         <span class="help-block">
@@ -79,13 +79,9 @@
             </div>
 
 
-            <div class="form-group">
+            <!--<div class="form-group">
                 <button type="button" class="btn btn-default" onclick="showStuff('selecter',this); return false;">Add Route</button>
-            </div>
-
-
-
-
+            </div>-->
 
             <!--Route Selecter-->
             <div class="container hidden" id="selecter">
@@ -117,11 +113,11 @@
     </div>
 
 
-<script type="text/javascript">
-function showStuff(id, btn) {
-   document.getElementById(id).className ="container";
-   btn.className  = 'hidden';
-}
-</script>
+    <script type="text/javascript">
+    function showStuff(id, btn) {
+        document.getElementById(id).className ="container";
+        btn.className  = 'hidden';
+    }
+    </script>
 
 @endsection

@@ -12,6 +12,11 @@ class Experiment extends Model
         'admin_id', 'subject', 'description',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Admin');
+    }
+
     public function form_select()
     {
         return $this->hasOne('App\Form_select');

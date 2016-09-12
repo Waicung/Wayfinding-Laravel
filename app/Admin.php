@@ -10,4 +10,9 @@ class Admin extends Model
     protected $primaryKey = 'admin_id';
 
     protected $fillable = ['admin_id'];
+
+    public function experiments()
+    {
+        return $this->hasMany('App\Experiment');
+    }
 }

@@ -27,16 +27,16 @@
 <div class="container">
     <h3>Dashboard</h3>
     <ul class="nav nav-tabs">
-        <li id="wf-panel-tab0"><a href="/home">Home{{ $active }}</a></li>
+        <li id="wf-panel-tab0"><a href="/home">Home</a></li>
         <li id="wf-panel-tab1"><a href="/newexperiment">New Experiment</a></li>
         <li class="dropdown" id="wf-panel-tab2">
             <a class="dropdown-toggle" data-toggle="dropdown" href="/monitor">Monitor
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="/monitor/stat">Statistics</a></li>
+                <li><a href="/monitor/statistics">Statistics</a></li>
                 <li><a href="/monitor/modifier">Modifier</a></li>
-                <li><a href="/monitor/part">Participants</a></li>
+                <li><a href="/monitor/participants">Participants</a></li>
             </ul>
         </li>
         <li class="dropdown" id="wf-panel-tab3">
