@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -14,10 +14,12 @@
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
                 <li><a href="{{ url('/about')}}">About</a></li>
                 <li><a href="{{ url('/contact')}}">Contact</a></li>
             <!-- Authentication Links -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
             @if (Auth::guest())
                <li><a href="{{ url('/login') }}">Login</a></li>
                {{-- <li><a href="{{ url('/register') }}">Register</a></li> --}}

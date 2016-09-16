@@ -4,12 +4,15 @@
     @include('includes.panel')
 
     {{-- @foreach($errors->all() as $message)
-        {{ $message }}
+    {{ $message }}
     @endforeach --}}
+    <!--Form creater-->
     <div class="container">
         <h2>Experiment Creater</h2>
+        <h3>Experiment Information</h3>
         <form class="form-horizontal" action="/createexp" method="post">
             {{ csrf_field() }}
+            <!--Form Subject-->
             <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
                 <label class="control-label col-sm-2" for="subject">Subject:</label>
                 <div class="col-sm-10">
@@ -22,6 +25,7 @@
                 </div>
             </div>
 
+            <!--Form Description-->
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label class="control-label col-sm-2" for="description">Descripion</label>
                 <div class="col-sm-10">
@@ -37,11 +41,12 @@
             <!--Recruitment Section-->
             <hr>
             <h3>Recruitment</h3>
+            <!--Recruitment form-->
             <div class="form-group{{ $errors->has('form') ? ' has-error' : '' }}">
                 <label for="form" class="col-sm-12">Recruitment Form:</label>
                 <div class="col-sm-12">
                     <select class="form-control" id="form" name="form">
-                
+
                         @foreach($forms as $form)
                             <option value="{{ $form->title }}">{{ $form->title }}</option>
                         @endforeach
@@ -54,6 +59,7 @@
                     @endif
                 </div>
             </div>
+            <!--Recuitment tests-->
             <div class="form-group{{ $errors->has('test') ? ' has-error' : '' }}">
                 <label for="test" class="col-sm-12">Recruitment Test (Optional: hold shift to select more than one):</label>
                 <div class="col-sm-12">
@@ -73,51 +79,63 @@
             </div>
 
 
-            <!--Submit Button-->
-            <div class="form-group pull-right">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-
-            <!--<div class="form-group">
-                <button type="button" class="btn btn-default" onclick="showStuff('selecter',this); return false;">Add Route</button>
-            </div>-->
-
             <!--Route Selecter-->
-            <div class="container hidden" id="selecter">
             <hr>
             <h3>Route Selecter</h3>
-            <div class="form-group">
-                <label class="control-label col-sm-1" for="subject">Centre:</label>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" id="subject" placeholder="Select a centre">
-                </div>
-            </div>
+            <div class="row">
+                <!--Route info-->
+                <div class="form col-md-7 route-info">
+                    <div class="row">
+                        <div class="form-group" id="MapCenter">
+                            <label class="control-label col-sm-2" for="subject">Centre:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="centerText" placeholder="Select a centre">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Route to be added-->
+                    <div class="row" id="routeList">
 
-            <div class="form-group">
-                <label class="control-label col-sm-1" for="subject">Origin:</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="subject" placeholder="Origin">
+                    </div>
+
+                    <!--Add-route button-->
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default" onclick="WFfunction.addRoute();">
+                                        Add Route
+                                    </button>
+                                    <a type="button" id="maptoggle" class="btn btn-info" data-toggle="collapse" href="#map">
+                                        Map
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <label class="control-label col-sm-2" for="subject">Destination:</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="subject" placeholder="Destination">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <div class="collapse in" id="map">
+                        </div>
+                    </div>
+                    <!--Submit Button-->
+                    <div class="form-group">
+                        <div class=" col-sm-12">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-default">Add Route</button>
-                </div>
-            </div>
             </div>
 
         </form>
     </div>
-
-
-    <script type="text/javascript">
-    function showStuff(id, btn) {
-        document.getElementById(id).className ="container";
-        btn.className  = 'hidden';
-    }
-    </script>
-
+<script src="/js/app.js"></script>
+<script src="/js/main.js" charset="utf-8"></script>
+<!--Google Map Api-->
+<script src="/js/gmap.js" charset="utf-8"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZEyaeSOnH8dcVq646GIyUQbxGKHza_dc&callback=initMap"></script>
+</body>
 @endsection

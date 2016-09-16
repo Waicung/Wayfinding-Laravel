@@ -8,6 +8,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/main.css">
 
         <script type="text/javascript">
             window.Laravel = <?php echo json_encode([
@@ -23,7 +24,7 @@
         @include('includes/footer')
 
         <!-- Scripts -->
-        <script src="/js/app.js"></script>
+        
         <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     </body>
 </html>

@@ -8,6 +8,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/main.css">
 
         <script type="text/javascript">
             window.Laravel = <?php echo json_encode([
