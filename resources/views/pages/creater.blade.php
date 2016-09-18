@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!--Route to be added-->
                     <div class="row" id="routeList">
 
@@ -118,6 +118,7 @@
                 </div>
                 <div class="col-md-5">
                     <div class="form-group">
+                        <input id="pac-input" class="controls" type="text" placeholder="Search not working">
                         <div class="collapse in" id="map">
                         </div>
                     </div>
@@ -136,6 +137,6 @@
 <script src="/js/main.js" charset="utf-8"></script>
 <!--Google Map Api-->
 <script src="/js/gmap.js" charset="utf-8"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZEyaeSOnH8dcVq646GIyUQbxGKHza_dc&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZEyaeSOnH8dcVq646GIyUQbxGKHza_dc&libraries=places&callback=initMap"></script>
 </body>
 @endsection
