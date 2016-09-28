@@ -2,8 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('includes.panel')
+    <div class="container">
+        <h3>Dashboard Home</h3>
 
-
+    </div>
 @endsection
-  

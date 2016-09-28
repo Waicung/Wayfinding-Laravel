@@ -14,7 +14,17 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('wf-summary', require('./components/Summary.vue'));
 
 const app = new Vue({
-    el: 'body'
+    el: '#vue-app',
+    data: {
+        experiment: {
+            subject: "",
+            description: "",
+            form: "",
+            tests: []
+        }
+    },
+
 });

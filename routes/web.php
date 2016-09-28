@@ -32,8 +32,8 @@ Route::get('/register', function()
 
 Route::get('/home', 'PageController@home')->name('home');
 
-Route::get('/newexperiment', 'PageController@createForm')
-    ->name('newexperiment');
+Route::get('/creater/{section}', 'PageController@creater')
+    ->name('creater');
 
 Route::get('/monitor/{section}', 'PageController@monitor')
     ->name('monitor');

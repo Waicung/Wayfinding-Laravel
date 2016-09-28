@@ -30,12 +30,26 @@ class PageController extends Controller
         return view('pages.dashboard');
     }
 
-    public function createForm()
+    public function creater($section){
+        switch ($section) {
+            case 'experiment':
+                return $this->createForm($section);
+                break;
+            case 'routes':
+                return view('pages.dashboard', compact('section'));
+                break;
+            default:
+                return view('pages.dashboard', compact('section'));
+                break;
+        }
+    }
+
+    public function createForm($section)
     {
         $forms = Form::all();
         $tests = Test::all();
 
-        return view('pages.creater', compact('forms', 'tests'));
+        return view('pages.creater', compact('forms', 'tests', 'section'));
     }
 
     public function monitor($section)
@@ -45,16 +59,16 @@ class PageController extends Controller
                 $exps = Admin::find(Auth::user()->user_id)
                         ->experiments()
                         ->get();
-                return view('pages.monitor', compact('exps'));
+                return view('pages.monitor', compact('section', 'exps'));
                 break;
             case 'modifier':
                 $subjects = Admin::find(Auth::user()->user_id)
                         ->experiments()
                         ->get(['subject']);
-                return view('pages.modifier', compact('subjects'));
+                return view('pages.modifier', compact('section', 'subjects'));
                 break;
             case 'participants':
-                return view('pages.participants');
+                return view('pages.participants', compact('section'));
                 break;
             default:
                 return back();
@@ -65,12 +79,14 @@ class PageController extends Controller
 
     public function recruitment()
     {
-        return view('pages.creater');
+        $section = "recuitment";
+        return view('pages.dashboard', compact('section'));
     }
 
     public function analyzer()
     {
-        return view('pages.creater');
+        $section = "analyzer";
+        return view('pages.dashboard', compact('section'));
     }
 
 
