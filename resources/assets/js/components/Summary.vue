@@ -1,8 +1,13 @@
+<!--
+A component for
+displaying the short summary of an experiment
+-->
+
 <template lang="html">
     <h3 class="text-center">{{ title }}</h3>
     <ul>
         <li v-for="(key, val) in list">
-            <h3>{{ key }}</h3>
+            <h4>{{ key }}</h4>
             <span>{{ val }}</span>
         </li>
     </ul>

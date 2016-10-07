@@ -16,6 +16,7 @@
     </head>
     <body>
         @include('includes/panel')
+        
         <main>
             @yield('content')
         </main>

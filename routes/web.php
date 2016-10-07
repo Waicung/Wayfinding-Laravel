@@ -35,6 +35,8 @@ Route::get('/home', 'PageController@home')->name('home');
 Route::get('/creater/{section}', 'PageController@creater')
     ->name('creater');
 
+Route::post('/creater/{section}', 'newExperimentController@creater');
+
 Route::get('/monitor/{section}', 'PageController@monitor')
     ->name('monitor');
 
@@ -43,5 +45,3 @@ Route::get('/recruitment/{section}', 'PageController@recruitment')
 
 Route::get('/analyzer', 'PageController@analyzer')
     ->name('analyzer');
-
-Route::post('/createexp', 'ExpController@createExp');

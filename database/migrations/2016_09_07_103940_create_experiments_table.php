@@ -21,7 +21,7 @@ class CreateExperimentsTable extends Migration
                   ->onDelete('cascade');
             $table->string('subject')->unique();
             $table->text('description')->nullable();
-            $table->integer('central_id')->unsigned();
+            $table->integer('central_id')->unsigned()->nullable();
             $table->foreign('central_id')
                   ->references('point_id')->on('points')
                   ->onDelete('cascade')->nullable();

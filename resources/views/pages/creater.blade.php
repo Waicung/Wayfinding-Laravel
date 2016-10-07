@@ -7,16 +7,12 @@
             <!--New Experiment-->
             <div class="row row-eq-height">
                 <div class="col-sm-7 section-left">
-
                     @include('forms.experimentform')
-
                 </div>
-
                 <!--Summary-->
                 <div class="col-sm-5 section-right">
                     <wf-summary :list = "experiment">
                 </div>
-
             </div>
 
         @elseif ($section == "routes")
@@ -27,6 +23,5 @@
             <?php // TODO: error page ?>
         @endif
     </div>
-
 
 @endsection

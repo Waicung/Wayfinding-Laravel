@@ -20,10 +20,14 @@ const app = new Vue({
     el: '#vue-app',
     data: {
         experiment: {
+            creater: "",
+            admins: [],
             subject: "",
             description: "",
             form: "",
-            tests: []
+            tests: [],
+            routes: [],
+            participants: [],
         }
     },
 

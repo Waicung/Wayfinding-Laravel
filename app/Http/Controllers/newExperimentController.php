@@ -4,30 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
-use Validator;
+use Auth;
 use App\Experiment;
 use App\User;
-use Auth;
-use App\Form_select;
 use App\Form;
-use App\Test_select;
+use App\Form_select;
 use App\Test;
+use App\Test_select;
 
-class ExpController extends Controller
+class newExperimentController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
-    public function createExp(Request $request)
+    public function creater($section, Request $request)
+    {
+        switch ($section) {
+        case 'newexp':
+            return $this->createExp($request);
+        case 'newRoutes':
+            return $this->createRoutes($request);
+        default:
+            return back()->withInput();
+            break;
+    }
+
+    }
+
+    private function createExp(Request $request)
     {
         // valudate input data
         $this->validate($request, [
-            'subject' => 'required|max:255',
+            'subject' => 'required|unique:experiments|max:255',
             'description' => 'max:65000',
             'form' => 'required',
             'test' => 'required',
@@ -52,5 +64,9 @@ class ExpController extends Controller
         $experiment->test_selects()->save($test);
 
         return redirect()->route('home');
+    }
+
+    private function createRoutes (Request $request) {
+        return redirect('url/');
     }
 }

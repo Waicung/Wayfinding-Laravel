@@ -1,5 +1,5 @@
 <h3>New Experiment</h3>
-<form class="form-horizontal" action="/createexp" method="post">
+<form class="form-horizontal" action="/creater/newexp" method="post">
     {{ csrf_field() }}
     <!--Form Subject-->
     <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
