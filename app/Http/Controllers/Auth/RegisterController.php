@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
-use App\User;
-use App\Admin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\User;
+use App\Models\Admin;
 
 class RegisterController extends Controller
 {
@@ -64,16 +64,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
+        $admin = Admin::create();
+        $user = new User([
+            'username' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'logined_at' => Carbon::now(),
         ]);
-        $user_id = User::where('email', $data['email'])->first()->user_id;
-        Admin::create([
-            'admin_id' => $user_id,
-        ]);
+        $admin->user()->save($user);
         return $user;
     }
 }

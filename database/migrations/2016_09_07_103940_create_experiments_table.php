@@ -14,19 +14,39 @@ class CreateExperimentsTable extends Migration
     public function up()
     {
         Schema::create('experiments', function (Blueprint $table) {
-            $table->increments('experiment_id');
+            $table->increments('id');
             $table->integer('admin_id')->unsigned();
             $table->foreign('admin_id')
-                  ->references('admin_id')->on('admins')
+                  ->references('id')->on('admins')
                   ->onDelete('cascade');
             $table->string('subject')->unique();
             $table->text('description')->nullable();
-            $table->integer('central_id')->unsigned()->nullable();
-            $table->foreign('central_id')
-                  ->references('point_id')->on('points')
-                  ->onDelete('cascade')->nullable();
             $table->timestamps();
-            $table->timestamp('closed_at')->nullable();
+            $table->dateTime('closed_at')->nullable();
+        });
+
+        /*
+         * experiment_guest many-many relationship
+         *
+         */
+        Schema::create('participants', function (Blueprint $table)
+        {
+
+            $table->integer('experiment_id')->unsigned();
+            $table->integer('guest_id')->unsigned();
+            $table->timestamps();
+
+            $table->foreign('experiment_id')
+                ->references('id')
+                ->on('experiments')
+                ->onDelete('cascade');
+            $table->foreign('guest_id')
+                ->references('id')
+                ->on('guests')
+                ->onDelete('cascade');
+
+            $table->primary(['experiment_id', 'guest_id']);
+
         });
     }
 
@@ -37,6 +57,7 @@ class CreateExperimentsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('participants');
         Schema::drop('experiments');
     }
 }

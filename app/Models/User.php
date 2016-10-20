@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,10 +15,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 
+        'username', 'email', 'password'
     ];
-
-    protected $primaryKey = 'user_id';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -28,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function userable()
+    {
+        return $this->morphTo();
+    }
+
+
 }

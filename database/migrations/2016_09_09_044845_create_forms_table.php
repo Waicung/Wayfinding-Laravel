@@ -14,14 +14,30 @@ class CreateFormsTable extends Migration
     public function up()
     {
         Schema::create('forms', function (Blueprint $table) {
-            $table->increments('form_id');
+            $table->increments('id');
             $table->integer('admin_id')->unsigned();
-            $table->foreign('admin_id')
-                  ->references('admin_id')->on('admins')
-                  ->onDelete('cascade');
             $table->string('title')->unique();
             $table->timestamps();
-            $table->boolean('activated')->default(0);
+            $table->boolean('activated')->default(1);
+
+            $table->foreign('admin_id')
+                ->references('id')->on('admins')
+                ->onDelete('cascade');
+        });
+
+        Schema::create('experiment_form', function (Blueprint $table) {
+            $table->integer('experiment_id')->unsigned();
+            $table->integer('form_id')->unsigned();
+            //$table->timestamps();
+
+            $table->foreign('experiment_id')
+                ->references('id')->on('experiments')
+                ->onDelete('cascade');
+            $table->foreign('form_id')
+                ->references('id')->on('forms')
+                ->onDelete('cascade');
+
+            $table->primary(['experiment_id','form_id']);
         });
     }
 
@@ -32,6 +48,7 @@ class CreateFormsTable extends Migration
      */
     public function down()
     {
+        Schema::drop('experiment_form');
         Schema::drop('forms');
     }
 }

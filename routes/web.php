@@ -25,11 +25,6 @@ Route::get('/contact', function () {
 
 Auth::routes();
 
-Route::get('/register', function()
-{
-    return view('auth.register');
-});
-
 Route::get('/home', 'PageController@home')->name('home');
 
 Route::get('/creater/{section}', 'PageController@creater')
@@ -45,3 +40,8 @@ Route::get('/recruitment/{section}', 'PageController@recruitment')
 
 Route::get('/analyzer', 'PageController@analyzer')
     ->name('analyzer');
+
+    Route::get('/test', function () {
+        $admin = new App\Admin;
+        $admin->save();
+    });
