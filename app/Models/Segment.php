@@ -27,4 +27,9 @@ class Segment extends Model
         return $this->hasOne(Point::class);
     }
 
+    public function modification()
+    {
+        return $this->hasMany(Modification::Class);
+    }
+
 }

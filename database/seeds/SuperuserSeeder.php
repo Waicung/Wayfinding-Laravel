@@ -19,7 +19,9 @@ class SuperuserSeeder extends Seeder
         factory(Admin::class, 'superuser')
             ->create()
             ->each(function ($u) {
-                $u->user()->save(factory(User::class)->make());
+                $u->user()->save(factory(User::class)->make([
+                    'username'  => 'will',
+                    'email' => 'will@example.com',]));
                 foreach(factory(Form::class, 5)->make() as $form){
                     $u->forms()->save($form);
                 }

@@ -31,9 +31,9 @@ class Experiment extends Model
         return $this->belongsToMany(Route::class);
     }
 
-    public function guests()
+    public function participants()
     {
-        return $this->belongsToMany(Guest::class, 'participants')->withTimestamps();;
+        return $this->belongsToMany(Guest::class, 'participants')->withTimestamps();
     }
 
 

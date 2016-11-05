@@ -32,6 +32,13 @@ class Route extends Model
         return $this->hasManyThrough(Instruction::class, Segment::class);
     }
 
+    public function participant()
+    {
+        return $this->belongsToMany(Participant::class, 'assignments')
+                    ->withPivot('id','next_id')
+                    ->withTimestamps();
+    }
+
     public static function createRoute(Point $origin, Point $destination)
     {
         return Route::create([

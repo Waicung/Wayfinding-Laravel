@@ -10,6 +10,7 @@ use App\Models\Point;
 use App\Models\Route;
 use App\Models\Segment;
 use App\Models\Instruction;
+use App\Models\Modification;
 use Faker\Generator;
 
 /*
@@ -44,7 +45,8 @@ $factory->define(Admin::class, function (Faker\Generator $faker)
 $factory->defineAs(Admin::class, 'superuser', function () use ($factory)
 {
     $admin = $factory->raw(Admin::class);
-    return array_merge($admin, ['superuser' => true]);
+    return array_merge($admin, [
+      'superuser' => true]);
 });
 
 $factory->define(Guest::class, function (Faker\Generator $faker)
@@ -110,5 +112,15 @@ $factory->define(Instruction::class, function (Faker\Generator $faker)
 {
     return [
         'content' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+    ];
+});
+
+$factory->define(Modification::class, function(Faker\Generator $faker)
+{
+    $content = $faker->sentence($nbWords = 6, $variableNbWords = true);
+    return [
+        'segment_num' => 0,
+        'mode' => $faker->randomElement([-1,0,1]),
+        'content' => rand(0,1) ? $faker->sentence($nbWords = 6, $variableNbWords = true) : '',
     ];
 });

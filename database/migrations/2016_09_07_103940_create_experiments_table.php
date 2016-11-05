@@ -31,7 +31,7 @@ class CreateExperimentsTable extends Migration
          */
         Schema::create('participants', function (Blueprint $table)
         {
-
+            $table->increments('id');
             $table->integer('experiment_id')->unsigned();
             $table->integer('guest_id')->unsigned();
             $table->timestamps();
@@ -45,7 +45,7 @@ class CreateExperimentsTable extends Migration
                 ->on('guests')
                 ->onDelete('cascade');
 
-            $table->primary(['experiment_id', 'guest_id']);
+            $table->unique(['experiment_id', 'guest_id']);
 
         });
     }
