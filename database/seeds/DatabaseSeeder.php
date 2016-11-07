@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             ->create()
             ->each(function ($a) {
                 $a->user()->save(factory(User::class)->make());
-                $a->experiments()->save(factory(Experiment::class)->make());
+                $a->experiments()->saveMany(factory(Experiment::class,3)->make());
             });
         $guest = factory(Guest::class, 50)
             ->create()

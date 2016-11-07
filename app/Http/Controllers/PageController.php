@@ -16,6 +16,7 @@ class PageController extends Controller
     //
     public function __construct()
     {
+        Auth::loginUsingId('2');
         $this->middleware('auth');
     }
 
@@ -27,7 +28,10 @@ class PageController extends Controller
 
     public function home()
     {
-        return view('pages.dashboard');
+
+        $experiments = Auth::user()->userable->experiments;
+        return view('pages.dashboard', compact('experiments'));
+
     }
 
     public function creater($section){
