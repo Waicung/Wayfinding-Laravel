@@ -13,35 +13,27 @@
 
 Route::get('/', function () {
     return view('index');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
+})->name('index');
 
 Auth::routes();
 
-Route::get('/home', 'PageController@home')->name('home');
+Route::get('/home', 'PageController@home')
+    ->name('home');
 
-Route::get('/creater/{section}', 'PageController@creater')
+Route::get('/profile', 'ProfileController@view')
+    ->name('profile');
+
+Route::get('/experiment', 'ExperimentController@showExperimentForm')
     ->name('creater');
 
-Route::post('/creater/{section}', 'newExperimentController@creater');
+Route::get('/editor', 'EditorController@editor')
+    ->name('editor');
 
-Route::get('/monitor/{section}', 'PageController@monitor')
+Route::get('/monitor', 'PageController@monitor')
     ->name('monitor');
 
-Route::get('/recruitment/{section}', 'PageController@recruitment')
+Route::get('/recruitment', 'PageController@recruitment')
     ->name('recruitment');
 
-Route::get('/analyzer', 'PageController@analyzer')
-    ->name('analyzer');
-
-    Route::get('/test', function () {
-        $admin = new App\Admin;
-        $admin->save();
-    });
+Route::get('/analyser', 'PageController@analyser')
+    ->name('analyser');

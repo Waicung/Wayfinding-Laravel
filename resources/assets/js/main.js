@@ -1,12 +1,12 @@
 var focusedID;
-$(document).ready(function(){
+jQuery(document).ready(function(){
 
     /*Map toggle button*/
-    $("#map").on("hide.bs.collapse", function(){
-        $("#maptoggle").toggleClass("btn-info");
+    jQuery("#map").on("hide.bs.collapse", function(){
+        jQuery("#maptoggle").toggleClass("btn-info");
     });
-    $("#map").on("show.bs.collapse", function(){
-        $("#maptoggle").toggleClass("btn-info");
+    jQuery("#map").on("show.bs.collapse", function(){
+        jQuery("#maptoggle").toggleClass("btn-info");
     });
 
     var lastRouteID = 0;
@@ -32,23 +32,23 @@ $(document).ready(function(){
                                         "<button type='button' class='close closeRoute'>&times;</button>"+
                                     "</div>"+
                                 "</div>";
-            $('#routeList').append(routeSection);
-            $('#origin'+lastRouteID).on('focus', function(event) {
+            jQuery('#routeList').append(routeSection);
+            jQuery('#origin'+lastRouteID).on('focus', function(event) {
                 //alert(event.currentTarget.id);
                 focusedID = event.currentTarget.id;
             });
-            $('#destination'+lastRouteID).on('click', function(event) {
+            jQuery('#destination'+lastRouteID).on('click', function(event) {
                 focusedID = event.currentTarget.id;
             });
         },
     }
 
-    $('#centerText').on('click', ".closeRoute", function(event) {
+    jQuery('#centerText').on('click', ".closeRoute", function(event) {
         event.preventDefault();
-        $(this).parent().parent().remove();
+        jQuery(this).parent().parent().remove();
     });
 
-    $('#centerText').on('focus', function(event) {
+    jQuery('#centerText').on('focus', function(event) {
         focusedID = event.currentTarget.id;
     })
 

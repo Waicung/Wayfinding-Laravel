@@ -28,33 +28,10 @@ class PageController extends Controller
 
     public function home()
     {
-
         $experiments = Auth::user()->userable->experiments;
         return view('pages.dashboard', compact('experiments'));
-
     }
 
-    public function creater($section){
-        switch ($section) {
-            case 'experiment':
-                return $this->createForm($section);
-                break;
-            case 'routes':
-                return view('pages.dashboard', compact('section'));
-                break;
-            default:
-                return view('pages.dashboard', compact('section'));
-                break;
-        }
-    }
-
-    public function createForm($section)
-    {
-        $forms = Form::all();
-        $tests = Test::all();
-
-        return view('pages.creater', compact('forms', 'tests', 'section'));
-    }
 
     public function monitor($section)
     {
@@ -78,19 +55,16 @@ class PageController extends Controller
                 return back();
                 break;
         }
-
     }
 
     public function recruitment()
     {
-        $section = "recuitment";
-        return view('pages.dashboard', compact('section'));
+        return $this->home();
     }
 
-    public function analyzer()
+    public function analyser()
     {
-        $section = "analyzer";
-        return view('pages.dashboard', compact('section'));
+        return $this->home();
     }
 
 

@@ -13,23 +13,59 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
-//Vue.component('wf-summary', require('./components/Summary.vue'));
+ // Vue.component('example', require('./components/Example.vue'));
+ //Vue.component('wf-summary', require('./components/Summary.vue'));
+
+Vue.component('pager', require('./components/Pager.vue'));
+Vue.component('progress-bar', require('./components/ProgressBar.vue'));
+Vue.component('action-bar', require('./components/ActionBar.vue'));
+Vue.component('list-view', require('./components/ListView.vue'));
+
+const store = new Vuex.Store({
+    state: {
+        stage: 1,
+        routes: [
+            {message:'item1',detail:'/'},
+            {message:'item2'},
+            {message:'item3'},
+        ],
+    },
+    mutations: {
+        increment: state => state.stage++,
+        decrement: state => state.stage--,
+        setRoutes: (state,routes) => state.routes = routes,
+        resetRoutes: state => state.routes = [],
+    }
+});
 
 const app = new Vue({
-    el: 'body',
-
+    el: 'main',
+    store,
     data: {
-        /*experiment: {
-            creater: "",
-            admins: [],
-            subject: "",
-            description: "",
-            form: "",
-            tests: [],
-            routes: [],
-            participants: [],
-        }*/
+        home: '/',
+        pages: 3,
+        fields: [
+            {required:true,inputs:['Subject','Description']},
+            {required:false,inputs:['Routes']},
+            {required:true,inputs:['Tests','Form']},
+        ],
+        subject: '',
+        description: '',
+        form: '',
+        tests: []
     },
-
+    computed: {
+        current: function () {
+            return store.state.stage;
+        },
+        progress: function () {
+            return (this.current-1)/this.pages*100;
+        },
+        ongoing: function () {
+            return 1/this.pages*100;
+        },
+        routes: function () {
+            return store.state.routes;
+        },
+    }
 });

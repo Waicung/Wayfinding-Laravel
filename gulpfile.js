@@ -16,6 +16,9 @@ require('laravel-elixir-vue');
 elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js')
-       .scripts(['gmap.js','main.js']);
+       .scripts(['main.js'], 'public/js/all.js')
+       .scripts(['gmap.js'], 'public/js/gmap.js');
+       //.scripts(['creater.js'], 'public/js/creater.js')
+       //.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap‌', 'public/fonts/bootstrap');
 
 });

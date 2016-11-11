@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Routing\Matching\SchemeValidator;
 
 class CreateLocationsTable extends Migration
 {
@@ -40,6 +41,7 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
+        Scheme::drop('events');
         Schema::drop('locations');
     }
 }

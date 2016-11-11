@@ -8,8 +8,8 @@
                 <div class="panel panel-default">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
-                        <li><a href="#register" data-toggle="tab">Regester</a></li>
-                    </ul>
+<!--                        <li><a href="#register" data-toggle="tab">Regester</a></li>
+-->                    </ul>
 
                     <div class="tab-content">
                         <!-- Login Tab-->
