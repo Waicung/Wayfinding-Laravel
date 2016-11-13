@@ -110,7 +110,7 @@ function RouteControl(controlDiv, map){
 
 /*call back function to initialise the map view*/
 function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('#map'), {
         zoom: 12,
         center: melbourne,
     });

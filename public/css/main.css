@@ -38,6 +38,7 @@ a {
     /*width: 100%;
     position: absolute;
     bottom: 68px;*/
+    padding-bottom: 20px;
 }
 
 select {
@@ -88,8 +89,9 @@ div.section-right ul li span {
 }
 
 #map {
-    min-height: 500px;
-    height: 100%;
+    min-height: 300px;
+    height: 50%;
+
 }
 
 #setCenterUI, #setOriginUI, #setDestinationUI {

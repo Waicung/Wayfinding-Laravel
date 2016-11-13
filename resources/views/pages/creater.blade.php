@@ -36,9 +36,7 @@
                 <!--Route Selection-->
                 <div class="row" slot="page-2">
                     <div class="col-md-12">
-                        <div class="map">
-
-                        </div>
+                        <google-map :markers="markers"></google-map>
                     </div>
                     <div class="col-md-12">
 
@@ -67,5 +65,6 @@
 @endsection
 
 @section('js')
-    <script src="/js/gmap.js" charset="utf-8"></script>
+
+
 @endsection

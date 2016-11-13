@@ -20,6 +20,7 @@ Vue.component('pager', require('./components/Pager.vue'));
 Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('action-bar', require('./components/ActionBar.vue'));
 Vue.component('list-view', require('./components/ListView.vue'));
+Vue.component('google-map', require('./components/GoogleMap.vue'));
 
 const store = new Vuex.Store({
     state: {
@@ -52,7 +53,8 @@ const app = new Vue({
         subject: '',
         description: '',
         form: '',
-        tests: []
+        tests: [],
+        markers: [],
     },
     computed: {
         current: function () {
