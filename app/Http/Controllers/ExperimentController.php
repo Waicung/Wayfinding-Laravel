@@ -24,4 +24,8 @@ class ExperimentController extends Controller
         return view('pages.creater', compact('forms', 'tests'));
     }
 
+    public function newExperiment(Request $request)
+    {
+        return view('pages.show', compact('request'));
+    }
 }

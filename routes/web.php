@@ -37,3 +37,5 @@ Route::get('/recruitment', 'PageController@recruitment')
 
 Route::get('/analyser', 'PageController@analyser')
     ->name('analyser');
+
+Route::post('/experiment/new', 'ExperimentController@newExperiment');

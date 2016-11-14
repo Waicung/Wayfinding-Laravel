@@ -22,26 +22,8 @@ Vue.component('action-bar', require('./components/ActionBar.vue'));
 Vue.component('list-view', require('./components/ListView.vue'));
 Vue.component('google-map', require('./components/GoogleMap.vue'));
 
-const store = new Vuex.Store({
-    state: {
-        stage: 1,
-        routes: [
-            {message:'item1',detail:'/'},
-            {message:'item2'},
-            {message:'item3'},
-        ],
-    },
-    mutations: {
-        increment: state => state.stage++,
-        decrement: state => state.stage--,
-        setRoutes: (state,routes) => state.routes = routes,
-        resetRoutes: state => state.routes = [],
-    }
-});
-
 const app = new Vue({
     el: 'main',
-    store,
     data: {
         home: '/',
         pages: 3,
@@ -55,19 +37,14 @@ const app = new Vue({
         form: '',
         tests: [],
         markers: [],
+        current: 1,
     },
     computed: {
-        current: function () {
-            return store.state.stage;
-        },
         progress: function () {
             return (this.current-1)/this.pages*100;
         },
         ongoing: function () {
             return 1/this.pages*100;
-        },
-        routes: function () {
-            return store.state.routes;
         },
     }
 });

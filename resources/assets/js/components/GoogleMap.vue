@@ -6,17 +6,22 @@
         :zoom.sync="zoom"
         :map-type-id.sync="mapType"
         :options="{styles: mapStyles, scrollwheel: scrollwheel}"
+        @g-click="mapClicked"
         @g-rightclick="mapRclicked"
         >
             <marker
+            v-for="m in markers"
             :position.sync="m.position"
             :opacity="m.opacity"
             :draggable.sync="m.draggable"
-            v-for="m in markers"
+            :label="m.label"
             >
             </marker>
         </map>
+        <div class="col-md-offset-8">
+            <a type="button" class="btn btn-default" @click="addMarker" style="margin:20px 0"> {{ markerBtn }}</a>
 
+        </div>
     </div>
 </template>
 
@@ -37,17 +42,21 @@ export default {
         return {
           center: { lat: -37.813628, lng: 144.963058 },
           zoom: 12,
-          clustering: true,
+          clustering: false,
           gridSize: 50,
           mapType: 'roadmap',
           mapStyle: 'normal',
           scrollwheel: true
         };
     },
-
+    computed: {
+        markerBtn: function () {
+            return this.markers.length%2 === 0? "Add Starting Point": "Add Destination";
+        }
+    },
     methods: {
         mapClicked (mouseArgs) {
-          console.log('map clicked', mouseArgs);
+            console.log('map clicked', mouseArgs);
         },
         mapRclicked (mouseArgs) {
             const createdMarker = this.addMarker();
@@ -55,19 +64,21 @@ export default {
             createdMarker.position.lng = mouseArgs.latLng.lng();
         },
         addMarker: function addMarker() {
+            var label = (this.markers.length)%2 ===0? (this.markers.length+1)/2: (this.markers.length)/2;
             this.markers.push({
                 position: this.center,
                 opacity: 1,
                 draggable: true,
+                label: label+""
             });
             return this.markers[this.markers.length - 1];
         }
-        },
-        components: {
-            Map,
-            Marker,
-        }
-    };
+    },
+    components: {
+        Map,
+        Marker,
+    }
+};
 </script>
 
 <style>

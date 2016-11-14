@@ -2,11 +2,17 @@
     Action Bar
 -->
 <template lang="html">
-    <div class="btn-group btn-group-justified">
-        <a :href="home" class="btn btn-danger">CANCEL</a>
-        <a href="#" @click="previous" class="btn btn-default" v-if="backable">BACK</a>
-        <a href="#" @click="discard" class="btn btn-link" v-if="!required">SKIP</a>
-        <a :href="nextDirect" @click="next" class="btn btn-success">{{ nextText }}</a>
+    <div class="btn-group btn-group-justified" >
+        <a class="btn btn-danger" :href="home" v-if="current<=pages">CANCEL</a></button>
+        <div class="btn-group">
+            <button type="button" @click="previous" class="btn btn-default" v-if="backable&&current<=pages">BACK</button>
+        </div>
+        <div class="btn-group">
+            <button type="button" @click="discard" class="btn btn-link" v-if="!required&&current<=pages">SKIP</button>
+        </div>
+        <div class="btn-group">
+            <button :type="nextType" @click="next" class="btn btn-success">{{ nextText }}</button>
+        </div>
     </div>
 </template>
 
@@ -33,6 +39,9 @@ export default {
         current: {
             type: Number,
             default: 1
+        },
+        markers: {
+            type: Array
         }
     },
     data: function () {
@@ -51,26 +60,27 @@ export default {
         backable: function () {
             return this.current>1;
         },
-        nextDirect: function () {
-            return this.current > this.pages? this.home : "#";
+        nextType: function () {
+            return this.current > this.pages? 'submit' : 'button';
         },
         nextText: function () {
-            return this.current === this.pages? "DONE" : "NEXT";
+            if(this.current < this.pages) return "SUBMIT";
+            else if (this.current >this.pages)  return "SUBMITTING";
+            else return "NEXT";
         }
     },
     methods: {
         discard: function () {
-            var tmp = this;
-            this.field.forEach(function(input) {
-                tmp.$store.commit('reset'+input);
-            });
+            this.markers = [];
             this.next();
         },
         next: function () {
-            this.$store.commit('increment');
+
+                this.current++;
+
         },
         previous: function () {
-            this.$store.commit('decrement');
+            this.current--;
         }
     },
 }

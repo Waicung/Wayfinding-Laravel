@@ -4,23 +4,23 @@
 <template lang="html">
     <div class="panel panel-default">
         <!--Panel Heading-->
-        <div class="panel-heading" v-if="heading">
-            <a href="#wf-items" data-toggle="collapse">
+        <a href="#wf-items" data-toggle="collapse">
+            <div class="panel-heading" v-if="dHeading">
                 <!--TODO: Inject heading hTML in to this slot-->
                 <slot name="heading"></slot>
-            </a>
-        </div>
+            </div>
+        </a>
 
         <!--The List-->
         <div class="panel-collapse in" id="wf-items">
             <ul class="list-group">
-                <li class="list-group-item" v-for="item in items">
+                <li class="list-group-item" v-for="route in routes">
                     <!--Remove item from the list-->
-                    <a v-if="remove" @click="remove(item)">
+                    <a v-if="remove" @click="remove(route)">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
-                    {{ item.message }}
-                    <a :href="item.detail" v-if="detail">
+                    {{ toString(route) }}
+                    <a :href="route.detail" v-if="detail">
                         <span class="glyphicon glyphicon-menu-right pull-right"></span>
                     </a>
                 </li>
@@ -38,13 +38,7 @@
 export default {
     props: {
         items: {
-            type: Array,
-            default: function () {
-                return [{
-                    message: 'identity',
-                    detail: 'url',
-                }]
-            }
+            type: Array
         },
         heading: {
             type: Boolean,
@@ -59,16 +53,40 @@ export default {
             default: false
         },
     },
+    computed: {
+        routes: function () {
+            var routes = [];
+            for(var i=0; i<this.items.length; i+=2){
+                if(i===this.items.length-1){
+                    routes.push({origin:this.items[i]});
+                }else {
+                    routes.push({origin:this.items[i], destination:this.items[i+1]});
+                }
+            }
+            return routes;
+        },
+        dHeading: function () {
+            return this.heading === false || !this.items[0]? false : true;
+        }
+    },
+
     methods: {
         /*Based on Vuex, delete the selected item from the list*/
-        remove: function (item) {
-            this.$store.commit('setRoutes',
-                this.items.filter(function (x) {
-                    return x.message!==item.message;
-                })
+        remove: function (route) {
+                this.items = this.items.filter(function (x) {
+                    return JSON.stringify(x)!==JSON.stringify(route.origin)&&JSON.stringify(x)!==JSON.stringify(route.destination);
+                }
             );
+        },
+        toString: function (route) {
+            if(route.destination === undefined){
+                return route.origin.position.lat.toFixed(6)+', '+route.origin.position.lng.toFixed(6);
+            }
+            return route.origin.position.lat.toFixed(6)+', '+route.origin.position.lng.toFixed(6)+' - '+
+            route.destination.position.lat.toFixed(6)+', '+route.destination.position.lng.toFixed(6);
         }
     }
+
 }
 </script>
 

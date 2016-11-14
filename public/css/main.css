@@ -38,7 +38,7 @@ a {
     /*width: 100%;
     position: absolute;
     bottom: 68px;*/
-    padding-bottom: 20px;
+    padding: 20px 0;
 }
 
 select {
