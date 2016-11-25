@@ -21,8 +21,10 @@ Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('action-bar', require('./components/ActionBar.vue'));
 Vue.component('list-view', require('./components/ListView.vue'));
 Vue.component('google-map', require('./components/GoogleMap.vue'));
+Vue.component('v-select', VueSelect.VueSelect);
 
 const app = new Vue({
+
     el: 'main',
     data: {
         home: '/',
@@ -34,8 +36,8 @@ const app = new Vue({
         ],
         subject: '',
         description: '',
-        form: '',
-        tests: [],
+        form: null,
+        tests: null,
         markers: [],
         current: 1,
     },
@@ -46,5 +48,18 @@ const app = new Vue({
         ongoing: function () {
             return 1/this.pages*100;
         },
-    }
+        routes: function () {
+            var routes = [];
+            for(var i=0; i<this.markers.length; i+=2){
+                if(i===this.markers.length-1){
+                    routes.push({origin:this.markers[i]});
+                }else {
+                    routes.push({origin:this.markers[i], destination:this.markers[i+1]});
+                }
+            }
+            return JSON.stringify(routes);
+        }
+    },
+
+
 });

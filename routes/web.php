@@ -20,11 +20,9 @@ Auth::routes();
 Route::get('/home', 'PageController@home')
     ->name('home');
 
-Route::get('/profile', 'ProfileController@view')
-    ->name('profile');
+Route::get('/profile', 'ProfileController@view');
 
-Route::get('/experiment', 'ExperimentController@showExperimentForm')
-    ->name('creater');
+Route::get('/experiment', 'ExperimentController@showExperimentForm');
 
 Route::get('/editor', 'EditorController@editor')
     ->name('editor');

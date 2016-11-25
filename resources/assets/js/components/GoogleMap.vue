@@ -20,7 +20,7 @@
         </map>
         <div class="col-md-offset-8">
             <a type="button" class="btn btn-default" @click="addMarker" style="margin:20px 0"> {{ markerBtn }}</a>
-
+            <span>Or right click on the map</span>
         </div>
     </div>
 </template>
@@ -64,7 +64,7 @@ export default {
             createdMarker.position.lng = mouseArgs.latLng.lng();
         },
         addMarker: function addMarker() {
-            var label = (this.markers.length)%2 ===0? (this.markers.length+1)/2: (this.markers.length)/2;
+            var label = (this.markers.length)%2 ===0? (this.markers.length+2)/2: (this.markers.length+1)/2;
             this.markers.push({
                 position: this.center,
                 opacity: 1,

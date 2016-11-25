@@ -64,8 +64,8 @@ export default {
             return this.current > this.pages? 'submit' : 'button';
         },
         nextText: function () {
-            if(this.current < this.pages) return "SUBMIT";
-            else if (this.current >this.pages)  return "SUBMITTING";
+            if(this.current === this.pages) return "SUBMIT";
+            else if (this.current > this.pages)  return "SUBMITTING";
             else return "NEXT";
         }
     },

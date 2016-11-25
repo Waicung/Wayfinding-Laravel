@@ -45,10 +45,6 @@ select {
     overflow-y: visible;
 }
 
-button {
-    margin: 0 15px;
-}
-
 .row-eq-height {
     display: flex;
 }

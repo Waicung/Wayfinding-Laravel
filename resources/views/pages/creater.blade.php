@@ -19,10 +19,16 @@
             <!--General Info-->
             <div class="row" slot="page-1">
                 <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
                       <label for="subject">Subject</label>
                       <input type="text" class="form-control" id="subject" placeholder="Give It a Title" v-model="subject">
-                      <p class="help-block">Identity for each experiment</p>
+                      @if ($errors->has('subject'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('subject') }}</strong>
+                          </span>
+                      @else
+                          <p class="help-block">Identity for each experiment</p>
+                      @endif
                     </div>
                     <div class="form-group">
                       <label for="description">Description</label>
@@ -47,7 +53,15 @@
 
             <!--Recruitment Section-->
             <div class="row" slot="page-3">
-                <h1>page3</h1>
+                <div class="col-md-12">
+                    <h5>Form</h5>
+                    <v-select  :value.sync="form" :options="{{ $forms }}" placeholder="General Data Collection"></v-select>
+                </div>
+                <div class="col-md-12">
+                    <h5>Tests</h5>
+                    <v-select  multiple :value.sync="tests" :options="{{ $tests }}" placeholder="Specific Tests"></v-select>
+                </div>
+
             </div>
         </pager>
 
@@ -55,12 +69,12 @@
             {{ csrf_field() }}
             <input type="hidden" name="subject" :value="subject">
             <input type="hidden" name="description" :value="description">
-            <input type="hidden" name="routes" :value="markers">
+            <input type="hidden" name="routes" :value="routes">
             <input type="hidden" name="tests" :value="tests">
             <input type="hidden" name="form" :value="form">
             <div class="row  wf-action-bar">
               <div class="col-md-12">
-                  <action-bar :pages="pages" :fields="fields" :home="home" :current.sync="current" :markers.sync="markers"></action-bar>
+                  <action-bar :pages="pages" :fields="fields" :home="home" :current.sync="current"></action-bar>
               </div>
             </div>
         </form>

@@ -63,7 +63,7 @@
 </nav>
 
 <!-- Highlight the currnet tab-->
-@if (Route::currentRouteName()!=='index' && Route::currentRouteName()!=='profile' && Route::currentRouteName()!=='creater')
+@if ($active = Route::currentRouteName())
     <script>
         <?php $active = Route::currentRouteName()?>
         document.getElementById("wf-panel-tab-{{ $active }}").className += " active";
