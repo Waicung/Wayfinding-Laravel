@@ -30,6 +30,11 @@ class Admin extends Model
         return $this->hasMany(Test::class);
     }
 
+    public function add(Experiment $experiment)
+    {
+        return $this->experiments()->save($experiment);
+    }
+
 
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
+    protected $guarded = [];
 
     public function experiments()
     {
@@ -39,7 +40,7 @@ class Route extends Model
                     ->withTimestamps();
     }
 
-    public static function createRoute(Point $origin, Point $destination)
+    public static function newRoute(Point $origin, Point $destination)
     {
         return Route::create([
             'origin_id' => $origin->id,

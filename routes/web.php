@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +39,6 @@ Route::get('/analyser', 'PageController@analyser')
     ->name('analyser');
 
 Route::post('/experiment/new', 'ExperimentController@newExperiment');
+// Route::post('/experiment/new', function(Request $request){
+//     return view('pages.show', compact('request'));
+// });

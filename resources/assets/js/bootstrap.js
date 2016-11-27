@@ -44,4 +44,4 @@ Vue.http.interceptors.push((request, next) => {
 //     key: 'your-pusher-key'
 // });
 
-var VueSelect = require('vue-select');
+window.VueSelect = require('vue-select');

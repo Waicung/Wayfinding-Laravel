@@ -15,7 +15,7 @@
                     </div>
                     <div class="panel-body">
                         <p class="text-center">
-                            {{ $recruitmentLink . "/" . $subject }}
+                            {{ $recruitmentLink. "/". "experiment". $experiment->id}}
                         </p>
                     </div>
                     <div class="panel-footer">
@@ -24,7 +24,7 @@
                         </p>
                     </div>
                 </div>
-              
+
             </div>
         </div>
 

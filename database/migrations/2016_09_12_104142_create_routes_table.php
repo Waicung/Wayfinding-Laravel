@@ -20,6 +20,8 @@ class CreateRoutesTable extends Migration
             $table->double('latitude');
             $table->string('title')->nullable();
             $table->timestamps();
+
+            $table->unique('latitude', 'longitude');
         });
 
         Schema::create('routes', function (Blueprint $table)
@@ -37,6 +39,8 @@ class CreateRoutesTable extends Migration
                 ->references('id')
                 ->on('points')
                 ->onDelete('cascade');
+
+            $table->unique('origin_id', 'destination_id');
         });
 
         Schema::create('experiment_route', function (Blueprint $table)
@@ -52,7 +56,7 @@ class CreateRoutesTable extends Migration
                 ->references('id')
                 ->on('routes')
                 ->onDelete('cascade');
-                
+
             $table->primary(['experiment_id','route_id']);
         });
     }

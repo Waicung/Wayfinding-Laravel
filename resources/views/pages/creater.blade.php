@@ -30,10 +30,16 @@
                           <p class="help-block">Identity for each experiment</p>
                       @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group {{ $errors->has('description') ? ' has-error' : ''}}">
                       <label for="description">Description</label>
                       <textarea class="form-control" id="description" rows="5" placeholder="Way-finding" v-model="description"></textarea>
-                      <p class="help-block">A brief description</p>
+                      @if ($errors->has('description'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('description')}}</strong>
+                          </span>
+                        @else
+                          <p class="help-block">A brief description</p>
+                      @endif
                     </div>
                 </div>
             </div>
@@ -54,11 +60,18 @@
             <!--Recruitment Section-->
             <div class="row" slot="page-3">
                 <div class="col-md-12">
+                    <div class="form-group {{ $errors->has('form') ? ' has-error' : ''}}">
                     <h5>Form</h5>
                     <v-select  :value.sync="form" :options="{{ $forms }}" placeholder="General Data Collection"></v-select>
+                    @if ($errors->has('form'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('form')}}</strong>
+                        </span>
+                    @endif
+                    </div>
                 </div>
                 <div class="col-md-12">
-                    <h5>Tests</h5>
+                    <h5>Tests (Optional)</h5>
                     <v-select  multiple :value.sync="tests" :options="{{ $tests }}" placeholder="Specific Tests"></v-select>
                 </div>
 

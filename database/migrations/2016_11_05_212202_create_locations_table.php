@@ -22,7 +22,7 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('enevts', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id')->unsigned();
             $table->string('content',100);
@@ -41,7 +41,7 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Scheme::drop('events');
+        Schema::drop('events');
         Schema::drop('locations');
     }
 }
