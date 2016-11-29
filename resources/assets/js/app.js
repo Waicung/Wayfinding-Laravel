@@ -52,14 +52,18 @@ const app = new Vue({
             var routes = [];
             for(var i=0; i<this.markers.length; i+=2){
                 if(i===this.markers.length-1){
-                    routes.push({origin:this.markers[i]});
+                    routes.push({origin:this.simplify(this.markers[i])});
                 }else {
-                    routes.push({origin:this.markers[i], destination:this.markers[i+1]});
+                    routes.push({origin:this.simplify(this.markers[i]), destination:this.simplify(this.markers[i+1])});
                 }
             }
             return JSON.stringify(routes);
         }
     },
-
+    methods: {
+        simplify: function (marker) {
+            return marker.position;
+        }
+    }
 
 });

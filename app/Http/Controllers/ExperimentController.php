@@ -55,7 +55,7 @@ class ExperimentController extends Controller
 
         $experiment->addForm($this->formResolver($data['form']));
         $experiment->addTests($this->testResolver($data['tests']));
-        $experiment->addRoute($this->routeResolver($data['routes']));
+        $experiment->addRoutes($this->routeStringResolver($data['routes']));
         return $experiment;
     }
 
@@ -66,15 +66,37 @@ class ExperimentController extends Controller
 
     protected function testResolver ($data)
     {
-        return Test::whereIn('title',$data)->get();
+        return Test::whereIn('title',explode(',', $data))->get();
     }
 
     protected function routeResolver ($data)
     {
-        $origin = Point::newPoint($data[0]);
-        $destination = Point::newPoint($data[1]);
-        $route = Route::newRoute($origin, $destination);
-        return $route;
+        $routes = [];
+        foreach (array_chunk($data,2) as $point) {
+            $origin = Point::newPoint($point[0]);
+            $destination = Point::newPoint($point[1]);
+            $route = Route::newRoute($origin, $destination);
+            array_push($routes, $route);
+        }
+        return $routes;
+    }
+
+    protected function routeStringResolver ($data)
+    {
+        $routes = [];
+        foreach (json_decode($data) as $route) {
+            $origin = Point::newPoint([
+                'latitude' => $route->origin->lat,
+                'longitude' => $route->origin->lng,
+            ]);
+            $destination = Point::newPoint([
+                'latitude' => $route->destination->lat,
+                'longitude' => $route->destination->lng,
+            ]);
+            $route = Route::newRoute($origin, $destination);
+            array_push($routes, $route);
+        }
+        return $routes;
     }
 
 }
