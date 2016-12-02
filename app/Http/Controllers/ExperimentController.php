@@ -46,6 +46,12 @@ class ExperimentController extends Controller
         return view('pages.success', compact('recruitmentLink','experiment'));
     }
 
+    public function showExperiment($id)
+    {
+        $experiment = Experiment::find($id);
+        return view('pages.experiment', compact('experiment'));
+    }
+
     protected function store(array $data)
     {
         $experiment = new Experiment;

@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('index');
-})->name('index');
+});
 
 Auth::routes();
 
@@ -42,3 +42,5 @@ Route::post('/experiment/new', 'ExperimentController@newExperiment');
 // Route::post('/experiment/new', function(Request $request){
 //     return view('pages.show', compact('request'));
 // });
+
+Route::get('/experiment/{id}', 'ExperimentController@showExperiment');

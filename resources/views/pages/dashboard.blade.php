@@ -12,7 +12,7 @@
                             <a data-toggle="collapse" href="#{{ "experiment".$experiment->id }}">
                                 {{ $experiment->subject }}
                             </a>
-                            <a href="{{ url("/experiment/"."experiment". $experiment->id) }}">
+                            <a href="{{ url("/experiment/". $experiment->id) }}">
                                 <span class="glyphicon glyphicon-menu-right pull-right"></span>
                             </a>
                         </div>

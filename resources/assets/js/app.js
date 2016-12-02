@@ -27,7 +27,7 @@ const app = new Vue({
 
     el: 'main',
     data: {
-        home: '/',
+        home: '/home',
         pages: 3,
         fields: [
             {required:true,inputs:['Subject','Description']},
